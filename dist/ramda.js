@@ -1,4 +1,4 @@
-//  Ramda v0.21.0
+//  Ramda v0.1.2
 //  https://github.com/ramda/ramda
 //  (c) 2013-2016 Scott Sauyet, Michael Hurley, and David Chambers
 //  Ramda may be freely distributed under the MIT license.
@@ -395,6 +395,18 @@
             return new XWrap(fn);
         };
     }();
+
+    /**
+     * noop function.
+     *
+     * @func
+     * @memberOf FW-R
+     * @since v0.21.0
+     * @
+     * @
+     */
+    var noop = function () {
+    };
 
     var _aperture = function _aperture(n, list) {
         var idx = 0;
@@ -1848,23 +1860,23 @@
      * @memberOf R
      * @since v0.21.0
      * @category List
-     * @sig (a, a -> Boolean) -> [a] -> [[a]]
+     * @sig ((a, a) → Boolean) → [a] → [[a]]
      * @param {Function} fn Function for determining whether two given (adjacent)
      *        elements should be in the same group
      * @param {Array} list The array to group. Also accepts a string, which will be
      *        treated as a list of characters.
      * @return {List} A list that contains sublists of equal elements,
-     *         whose concatenations is equal to the original list.
+     *         whose concatenations are equal to the original list.
      * @example
      *
-     *    groupWith(R.equals, [0, 1, 1, 2, 3, 5, 8, 13, 21])
-     *    // [[0], [1, 1], [2, 3, 5, 8, 13, 21]]
+     * R.groupWith(R.equals, [0, 1, 1, 2, 3, 5, 8, 13, 21])
+     * //=> [[0], [1, 1], [2], [3], [5], [8], [13], [21]]
      *
-     *    groupWith((a, b) => a % 2 === b % 2, [0, 1, 1, 2, 3, 5, 8, 13, 21])
-     *    // [[0], [1, 1], [2], [3, 5], [8], [13, 21]]
+     * R.groupWith((a, b) => a % 2 === b % 2, [0, 1, 1, 2, 3, 5, 8, 13, 21])
+     * //=> [[0], [1, 1], [2], [3, 5], [8], [13, 21]]
      *
-     *    R.groupWith(R.eqBy(isVowel), 'aestiou')
-     *    // ['ae', 'st', 'iou']
+     * R.groupWith(R.eqBy(isVowel), 'aestiou')
+     * //=> ['ae', 'st', 'iou']
      */
     var groupWith = _curry2(function (fn, list) {
         var res = [];
@@ -3854,6 +3866,30 @@
             result.push(slice(idx, idx += n, list));
         }
         return result;
+    });
+
+    /**
+     * noop function.
+     *
+     * @func
+     * @memberOf FW-R
+     * @since v0.21.0
+     * @
+     * @
+     */
+    var splitIf = _curry2(function splitIf(condition, list) {
+        var matchs = [], unMatchs = [];
+        list.forEach(function (item) {
+            if (condition(item)) {
+                matchs.push(item);
+            } else {
+                unMatchs.push(item);
+            }
+        });
+        return [
+            matchs,
+            unMatchs
+        ];
     });
 
     /**
@@ -6778,13 +6814,14 @@
      * `chain` maps a function over a list and concatenates the results. `chain`
      * is also known as `flatMap` in some libraries
      *
-     * Dispatches to the `chain` method of the second argument, if present.
+     * Dispatches to the `chain` method of the second argument, if present,
+     * according to the [FantasyLand Chain spec](https://github.com/fantasyland/fantasy-land#chain).
      *
      * @func
      * @memberOf R
      * @since v0.3.0
      * @category List
-     * @sig (a -> [b]) -> [a] -> [b]
+     * @sig Chain m => (a -> m b) -> m a -> m b
      * @param {Function} fn
      * @param {Array} list
      * @return {Array}
@@ -8666,6 +8703,7 @@
         nAry: nAry,
         negate: negate,
         none: none,
+        noop: noop,
         not: not,
         nth: nth,
         nthArg: nthArg,
@@ -8718,6 +8756,7 @@
         split: split,
         splitAt: splitAt,
         splitEvery: splitEvery,
+        splitIf: splitIf,
         splitWhen: splitWhen,
         subtract: subtract,
         sum: sum,
