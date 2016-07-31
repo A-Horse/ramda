@@ -1,4 +1,4 @@
 
 module.exports = function(list) {
-  return list[0];
+  return list[1];
 }

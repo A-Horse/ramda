@@ -397,7 +397,7 @@
     }();
 
     var first = function (list) {
-        return list[0] || null;
+        return list[0];
     };
 
     /**
@@ -410,6 +410,10 @@
      * @
      */
     var noop = function () {
+    };
+
+    var second = function (list) {
+        return list[1];
     };
 
     var _aperture = function _aperture(n, list) {
@@ -8798,6 +8802,7 @@
         replace: replace,
         reverse: reverse,
         scan: scan,
+        second: second,
         sequence: sequence,
         set: set,
         slice: slice,
