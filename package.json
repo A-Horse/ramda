@@ -2,7 +2,7 @@
   "author": "Tyan",
     "name": "fw-ramda",
   "description": "A practical functional library for JavaScript programmers.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "http://ramdajs.com/",
   "license": "MIT",
   "repository": {
