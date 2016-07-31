@@ -396,6 +396,10 @@
         };
     }();
 
+    var first = function (list) {
+        return list[0] || null;
+    };
+
     /**
      * noop function.
      *
@@ -8635,6 +8639,7 @@
         findIndex: findIndex,
         findLast: findLast,
         findLastIndex: findLastIndex,
+        first: first,
         flatten: flatten,
         flip: flip,
         forEach: forEach,
